@@ -6,6 +6,11 @@ Base
 
 body {
   background: #ffffff;
+  color: #4B4B4B;
+  font-family: Vaud;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem;
 }
 
 .main {
@@ -15,6 +20,20 @@ body {
   padding: 80px 40px;
 }
 
+h3 {
+  font-weight: 800;
+  color: #111111;
+}
+
+h1, .primary-heading {
+  color: #111111;
+  font-weight: 600;
+}
+
+p, .paragraph {
+  color: #4B4B4B;
+}
+
 
 /*
 
@@ -22,11 +41,13 @@ Content at the top of the view
 
 */
 .everpresent-content {
+  margin-top: 8rem;
   border-bottom-width: 1px;
-  border-bottom-color: #E3E9EF;
+  border-bottom-color: #ebebeb;
   border-bottom-style: solid;
   margin-bottom: 16px;
   padding-bottom: 16px;
+  color: #111;
 }
 
 .everpresent-content__heading {
@@ -35,10 +56,15 @@ Content at the top of the view
 
 .everpresent-content__subheading {
   font-size: 24px;
-  font-weight: 300;
-  color: #527084;
+  font-weight: 400;
+  color: #111;
   line-height: 32px;
   margin-bottom: 0;
+}
+
+.step-title {
+  font-weight: 800;
+  color: #111;
 }
 
 /*
@@ -66,9 +92,10 @@ Item overview
 
 .item-overview__heading {
   font-weight: bold;
-  text-transform: uppercase;
-  font-size: 12px;
-  margin-bottom: 0;
+  font-family: inconsolata;
+  font-size: 1.4rem;
+  margin-bottom: 0.1rem;
+  letter-spacing: 1px;
 }
 
 .item-overview__id {
@@ -81,6 +108,21 @@ Item overview
 One off tweaks to the layout for tables
 
 */
+table {
+  margin-bottom: 2rem;
+}
+
+.table-header {
+  font-weight: bold;
+  font-family: inconsolata;
+  font-size: 1.4rem;
+  letter-spacing: 0px;
+  color: #111;
+}
+
+table tr {
+  border-bottom-color: #ebebeb;
+}
 
 .response-row {
 }
@@ -101,7 +143,7 @@ Display content inside of box
 .box {
   border-radius: 4px;
   border-width: 1px;
-  border-color: #E3E9EF;
+  border-color: #ebebeb;
   border-style: solid;
   border-radius: 4px;
   margin-bottom: 24px;
@@ -112,9 +154,9 @@ Display content inside of box
 .box__heading {
   padding: 16px 24px;
   border-bottom-width: 1px;
-  border-bottom-color: #E3E9EF;
+  border-bottom-color: #ebebeb;
   border-bottom-style: solid;
-  background-color: #FAFCFD;
+  background-color: #efefef;
   margin-bottom: 0;
 }
 
@@ -126,7 +168,7 @@ Item row
 */
 .item-data-row {
   border-bottom-width: 1px;
-  border-bottom-color: #E3E9EF;
+  border-bottom-color: #ebebeb;
   border-bottom-style: solid;
   padding-top: 24px;
   padding-bottom: 24px;
@@ -146,33 +188,40 @@ Item row
 }
 
 .item-data-row__request-type {
-  background-color
-  font-size: 12px;
-  color: #02B1F8;
-  letter-spacing: 0;
-  background: #D9F3FE;
   font-weight: 600;
-  text-transform: uppercase;
   border-radius: 4px;
   height: 32px;
   line-height: 32px;
   text-align: center;
-  font-size: 14px;
+  font-family: heimat mono;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #B1EEFC;
+  border-radius: 2px;
+  color: #111111;
+}
+
+.item-data-row__description {
+  max-width: 400px;
 }
 
 .item-data-row__endpoint {
-  font-family: "monaco", courier;
-  font-size: 14px;
+  font-family: inconsolata, courier;
+  font-size: 16px;
   line-height: 32px;
   display: inline-block;
 }
 
 .item-data-row__nicename {
   font-size: 16px;
-  line-height: 32px;
   display: inline-block;
-  font-weight: 500;
-  color: #033156;
+  margin-right: 0.8rem;
+  font-weight: 600;
+  line-height: 3.2rem;
+  color: #111111;
+
 }
 
 
@@ -185,6 +234,7 @@ Item row
   width: 62%;
   float: left;
   padding-left: 16px;
+  margin-bottom: 1rem;
 }
 
 .item-data-row__right {
@@ -229,4 +279,174 @@ Errors
 .alert-danger a {
   color: #a94442;
   font-weight: bold;
+}
+
+/*
+
+Code Snippet
+
+*/
+
+pre {
+  max-height: 408px;
+  color: #9B9B9B;
+  font-family: inconsolata;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+
+
+/*
+
+Button Style
+
+*/
+
+.button {
+  border: 1px solid #111;
+  box-shadow: none;
+  background-color: #fff;
+  color: #111;
+  border-radius: 2px;
+  height: 40px;
+  transition: all 0.5s ease;
+  font-weight: 600;
+}
+
+.button--is-default {
+  transition: all 0.5s ease;
+}
+
+.button--is-default:hover {
+  color: #0A85EA;
+  box-shadow: none;
+  border: 1px solid #0A85EA;
+  transition: all 0.5s ease;
+}
+
+.button--is-default:active {
+  border: 1px solid #111;
+  box-shadow: none;
+}
+
+.button--is-default:after {
+  box-shadow: none;
+}
+
+.button--is-primary {
+  margin-top: 2rem;
+  height: 48px;
+  text-shadow: none;
+  line-height: 0;
+  background-color: #111;
+  color: #fff;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+.button--is-primary:hover {
+  background-color: #0A85EA;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+.button--is-primary:after {
+  box-shadow: none;
+}
+
+.button--is-primary:active {
+  box-shadow: none;
+}
+
+.button:focus {
+  box-shadow: none;
+}
+
+/*
+Nav
+*/
+
+/*
+nav {
+	background-color: #ccc;
+	display: flex;
+	justify-content: center;
+}
+*/
+
+.main-nav-links {
+  width: 100%;
+	display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+header {
+  position: fixed;
+  background-color: #fff;
+  border-bottom: 1px solid #d7d7d7;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px;
+/*  padding-top: 30px;*/
+  z-index: 3;
+  height: 96px;
+}
+
+nav .logo {
+  width: 126px;
+/*  margin-top: -6px;*/
+}
+
+.page-title {
+  margin-top: 7px;
+}
+
+.top-bar-cta {
+  height: 48px;
+}
+
+header h1 {
+ font-size: 32px;
+ font-weight: 800;
+}
+
+span.regular {
+ font-weight: 400;
+}
+
+@media (max-width:1024px) {
+
+    nav .logo {
+        display: none;
+    }
+
+ nav a {
+   font-size: 18px;
+ }
+
+ header h1 {
+   font-size: 24px;
+   margin-top: 16px;
+ }
+
+ header {
+   position: absolute;
+ }
+}
+
+.request-intro {
+  padding-top: 3rem;
+  border-top: 1px solid #ebebeb;
+  padding-bottom: 1rem;
+}
+
+#access-token-container  {
+  
+    border-left: 1px solid #ebebeb;
+    padding-left: 2rem;
+  
 }

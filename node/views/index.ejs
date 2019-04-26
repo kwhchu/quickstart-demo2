@@ -4,18 +4,32 @@
 <meta charset="UTF-8">
 <title>Plaid Quickstart Example</title>
 <link rel="stylesheet" href="https://threads.plaid.com/threads.css">
-
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-tomorrow.css"> -->
+<link rel="stylesheet" type="text/css" href="prism.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+  <header>
+   <nav class="main-nav-links">
+     <div class="logo">
+       <img src="img/plaid-logo-01.svg">
+     </div>
+     <div class="center">
+       <h1 class="page-title">Quickstart <span class="regular">Demo</span></h1>
+     </div>
+     <div class="right">
+       <a href="https://dashboard.plaid.com/signup"><button class="button button--is-small button--is-default top-bar-cta">Get API keys</button></a>
+     </div>
+   </nav>
+  </header>
   <main class="main">
     <div class="grid">
       <div class="grid__column grid__column--is-twelve-columns">
         <div id="banner" class="everpresent-content">
-          <h1 class="everpresent-content__heading">Plaid Quickstart</h1>
+<!--          <h1 class="everpresent-content__heading">Plaid Quickstart</h1>-->
           <p id="intro" class="everpresent-content__subheading">
-            An example application that outlines an end-to-end integration with Plaid
+            An example application outlines an end-to-end integration with Plaid in 3 steps:
           </p>
           <p id="steps" class="everpresent-content__subheading">
            Success! You just created an Item by linking your account.
@@ -23,9 +37,21 @@
         </div>
 
         <div id="container" class="initial-view">
+<!--
           <p class="initial-view__description">
             Click the button below to open a list of Institutions. After you select one, you’ll be guided through an authentication process. Upon completion, a public_token will be passed back to the server and exchanged for access_token.
           </p>
+-->
+          <p class="initial-view__description">
+            <span class="step-title">1. Select a bank</span> you’d like to connect your application to.
+          </p>
+          <p class="initial-view__description">
+            <span class="step-title">2. Use our provided credentials</span> to create an item. You'll see the credentials after you select a bank.
+          </p>
+          <p class="initial-view__description">
+            <span class="step-title">3. Explore product data</span> in table and JSON format to understand data types retrieved from each product.
+          </p>
+          
 
           <button id="link-btn" class="button button--is-primary">Connect with Plaid</button>
         </div>
@@ -36,7 +62,7 @@
               <h3 class="item-overview__heading">item_id</h3>
               <p class="item-overview__id" id="item_id">san.asjsansakjsakjasjksajkas</p>
             </div>
-            <div class="item-overview__column">
+            <div class="item-overview__column" id="access-token-container">
               <h3 class="item-overview__heading">access_token</h3>
               <p class="item-overview__id" id="access_token">••••••••hsakjsl</p>
             </div>
@@ -44,7 +70,7 @@
             <div style="clear: both"></div>
           </div>
 
-          <p>Now that you have an access_token you can make all of the following API requests:</p>
+          <p class="request-intro">Now that you have an access_token you can make all of the following API requests:</p>
 
           <div class="box">
             <h3 class="box__heading">Products</h3>
@@ -63,7 +89,8 @@
                 <button id="get-auth-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
               </div>
               <div class="item-data-row__response">
-                <table><tbody id="get-auth-data"></tbody></table>
+<!--                <table><tbody id="get-auth-data"></tbody></table>-->
+                <div id="get-auth-json"></div>
               </div>
             </div>
 
@@ -81,7 +108,8 @@
                 <button id="get-transactions-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
               </div>
               <div class="item-data-row__response">
-                <table><tbody id="get-transactions-data"></tbody></table>
+<!--                <table><tbody id="get-transactions-data"></tbody></table>-->
+                <div id="get-txn-json"></div>
               </div>
             </div>
 
@@ -99,7 +127,8 @@
                 <button id="get-identity-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
               </div>
               <div class="item-data-row__response">
-                <table><tbody id="get-identity-data"></tbody></table>
+<!--                <table><tbody id="get-identity-data"></tbody></table>-->
+              <div id="get-identity-data"></div>
               </div>
             </div>
 
@@ -117,7 +146,8 @@
                 <button id="get-balance-btn" class="button button--is-small button--is-default button--is-full-width">Send request</button>
               </div>
               <div class="item-data-row__response">
-                <table><tbody id="get-balance-data"></tbody></table>
+<!--                <table><tbody id="get-balance-data"></tbody></table>-->
+                <div id="get-balance-data"></div>
               </div>
             </div>
 
@@ -162,7 +192,8 @@
               </div>
 
               <div class="item-data-row__response">
-                <table><tbody id="get-item-data"></tbody></table>
+<!--                <table><tbody id="get-item-data"></tbody></table>-->
+                <div id="get-item-data"></div>
               </div>
             </div>
 
@@ -180,7 +211,8 @@
               </div>
 
               <div class="item-data-row__response">
-                <table><tbody id="get-accounts-data"></tbody></table>
+<!--                <table><tbody id="get-accounts-data"></tbody></table>-->
+                <div id="get-accounts-data"></div>
               </div>
             </div>
           </div>
@@ -189,8 +221,11 @@
     </div>
   </main>
 
+  <script src="prism.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
   <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-json.min.js"></script>-->
+
   <script>
   (function($) {
     var products = '<%= PLAID_PRODUCTS %>'.split(',');
@@ -244,7 +279,7 @@
             displayError(this, data.error);
             return;
           }
-          var html = '<tr><td><strong>Name</strong></td><td><strong>Balances</strong></td><td><strong>Subtype</strong></td><td><strong>Mask</strong></td></tr>';
+          var html = '<table><tbody><tr><td><span class="table-header">Name</span></td><td><span class="table-header">Balances</span></td><td><span class="table-header">Subtype</span></td><td><span class="table-header">Mask</span></td></tr>';
           data.accounts.accounts.forEach(function(account, idx) {
             html += '<tr>';
             html += '<td>' + account.name + '</td>';
@@ -254,14 +289,18 @@
             html += '</tr>';
           });
 
-          $(this).html(html).slideDown();
+          var responseJson = '</tbody></table><pre class="language-json">' + JSON.stringify(data.accounts,  null, 2) + '</pre>';
+          var accountsHtml = '<div>' + html + responseJson + '</div>';
+          $(this).html(accountsHtml).slideDown(null, function() {
+            Prism.highlightElement($(this).find('pre.language-json')[0]);
+          });
         });
       });
     });
 
     $('#get-auth-btn').on('click', function(e) {
       $.get('/auth', function(data) {
-        $('#get-auth-data').slideUp(function() {
+        $('#get-auth-json').slideUp(function() {
           if (data.error != null) {
             displayError(this, data.error);
             return;
@@ -270,7 +309,7 @@
           var isAch = authData.numbers.ach.length > 0;
           var routingLabel = isAch ? 'Routing #' : 'Institution and Branch #';
 
-          var html = '<tr><td><strong>Name</strong></td><td><strong>Balance</strong></td><td><strong>Account #</strong></td><td><strong>'+ routingLabel +'</strong></td></tr>';
+          var html = '<table><tbody><tr><td><span class="table-header">Name</span></td><td><span class="table-header">Balance</span></td><td><span class="table-header">Account #</span></td><td><span class="table-header">'+ routingLabel +'</span></td></tr>';
           if (isAch) {
             authData.numbers.ach.forEach(function(achNumbers, idx) {
               // Find the account associated with this set of account and routing numbers
@@ -296,9 +335,18 @@
               html += '<td>' + eftNumber.account + '</td>';
               html += '<td>' + eftNumber.institution + ' ' + eftNumber.branch + '</td>';
               html += '</tr>';
+
             });
           }
-          $(this).html(html).slideDown();
+          
+//          console.log(JSON.stringify(authData,  null, 2));
+//          console.log("html before", html);
+          var responseJson = '</tbody></table><pre class="language-json">' + JSON.stringify(authData,  null, 2) + '</pre>';
+          var authHtml = '<div>' + html + responseJson + '</div>';
+//          console.log("html after", html);
+          $(this).html(authHtml).slideDown(null, function() {
+            Prism.highlightElement($(this).find('pre.language-json')[0]);
+          });
         });
       });
     });
@@ -311,7 +359,7 @@
             return;
           }
           var identityData = data.identity.identity;
-          var html = '<tr class="response-row response-row--is-identity"><td><strong>Names</strong></td><td><strong>Emails</strong></td><td><strong>Phone numbers</strong></td><td><strong>Addresses</strong></td></tr><tr class="response-row response-row--is-identity">';
+          var html = '<table><tbody><tr class="response-row response-row--is-identity"><td><span class="table-header">Names</span></td><td><span class="table-header">Emails</span></td><td><span class="table-header">Phone numbers</span></td><td><span class="table-header">Addresses</span></td></tr><tr class="response-row response-row--is-identity">';
           html += '<td>';
           identityData.names.forEach(function(name, idx) {
             html += name + '<br />';
@@ -331,7 +379,14 @@
           });
           html += '</td></tr>';
 
-          $(this).html(html).slideDown();
+//          console.log(JSON.stringify(identityData,  null, 2));
+//          console.log("html before", html);
+          var responseJson = '</tbody></table><pre class="language-json">' + JSON.stringify(identityData,  null, 2) + '</pre>';
+          var identityHtml = '<div>' + html + responseJson + '</div>';
+//          console.log("html after", html);
+          $(this).html(identityHtml).slideDown(null, function() {
+            Prism.highlightElement($(this).find('pre.language-json')[0]);
+          });
         });
       });
     });
@@ -342,12 +397,16 @@
           if (data.error) {
             displayError(this, data.error);
           } else {
-            var html = '';
-            html += '<tr><td>Institution name</td><td>' + data.institution.name + '</td></tr>';
-            html += '<tr><td>Billed products</td><td>' + data.item.billed_products.join(', ') + '</td></tr>';
-            html += '<tr><td>Available products</td><td>' + data.item.available_products.join(', ') + '</td></tr>';
+            var html = '<table><tbody>';
+            html += '<tr><td><span class="table-header">Institution name</span></td><td>' + data.institution.name + '</td></tr>';
+            html += '<tr><td><span class="table-header">Billed products</span></td><td>' + data.item.billed_products.join(', ') + '</td></tr>';
+            html += '<tr><td><span class="table-header">Available products</span></td><td>' + data.item.available_products.join(', ') + '</td></tr>';
 
-            $(this).html(html).slideDown();
+          var responseJson = '</tbody></table><pre class="language-json">' + JSON.stringify(data.item,  null, 2) + '</pre>';
+          var itemHtml = '<div>' + html + responseJson + '</div>';
+          $(this).html(itemHtml).slideDown(null, function() {
+            Prism.highlightElement($(this).find('pre.language-json')[0]);
+          });
           }
         });
       });
@@ -376,19 +435,27 @@
             });
           });
         } else {
-          $('#get-transactions-data').slideUp(function() {
-            var html = '<tr><td><strong>Name</strong></td><td><strong>Amount</strong></td><td><strong>Date</strong></td></tr>';
+          $('#get-txn-json').slideUp(function() {
+            var html = '<table><tbody><tr><td><span class="table-header">Name</span></td><td><span class="table-header">Amount</span></td><td><span class="table-header">Date</span></td></tr>';
             data.transactions.transactions.forEach(function(txn, idx) {
               html += '<tr>';
               html += '<td>' + txn.name + '</td>';
               html += '<td>$' + txn.amount + '</td>';
               html += '<td>' + txn.date + '</td>';
               html += '</tr>';
+            
             });
+            
+            console.log(JSON.stringify(data.transactions,  null, 2));
+            console.log("html before", html);
+            var responseJson = '</tbody></table><pre class="language-json">' + JSON.stringify(data.transactions,  null, 2) + '</pre>';
 
-            $(this).slideUp(function() {
-              $(this).html(html).slideDown();
+            var txnHtml = '<div>' + html + responseJson + '</div>';
+            console.log("html after", html);
+            $(this).html(txnHtml).slideDown(null, function() {
+              Prism.highlightElement($(this).find('pre.language-json')[0]);
             });
+            
           });
         }
       });
@@ -402,7 +469,7 @@
             return;
           }
           var balanceData = data.balance;
-          var html = '<tr><td><strong>Name</strong></td><td><strong>Balance</strong></td><td><strong>Subtype</strong></td><td><strong>Mask</strong></td></tr>';
+          var html = '<table><tbody><tr><td><span class="table-header">Name</span></td><td><span class="table-header">Balance</span></td><td><span class="table-header">Subtype</span></td><td><span class="table-header">Mask</span></td></tr>';
           balanceData.accounts.forEach(function(account, idx) {
             html += '<tr>';
             html += '<td>' + account.name + '</td>';
@@ -411,8 +478,15 @@
             html += '<td>' + account.mask + '</td>';
             html += '</tr>';
           });
-
-          $(this).html(html).slideDown();
+          
+          console.log(JSON.stringify(balanceData,  null, 2));
+          console.log("html before", html);
+          var responseJson = '</tbody></table><pre class="language-json">' + JSON.stringify(balanceData,  null, 2) + '</pre>';
+          var balanceHtml = '<div>' + html + responseJson + '</div>'
+          $(this).html(balanceHtml).slideDown(null, function() {
+            Prism.highlightElement($(this).find('pre.language-json')[0]);
+          });
+          
         });
       });
     });
@@ -470,6 +544,8 @@ function displayError(element, error) {
     </div>`;
   $(element).html(html).slideDown();
 }
+    
+    
   </script>
 </body>
 </html>
